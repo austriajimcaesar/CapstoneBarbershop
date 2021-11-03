@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "emesbarbershop"
+    }
+  },
+  "defaultProject": "emesbarbershop",
+  "cli": {
+    "analytics": "7f1abfaf-6d3c-4657-8d66-d05c3b8db346"
+  }
 }
