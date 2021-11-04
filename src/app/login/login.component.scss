@@ -12,13 +12,29 @@
     margin-bottom: 20px;
     margin-top:10px;
 }
+.logo2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-bottom: 20px;
+    margin-top:10px;
+}
+.input-field label {
+    color: #000;
+  }
+
+  .btn{
+      color: rgb(19, 18, 18);
+    
+  }
 
 .cardright {
     border-radius: 20px;
     margin-left: 1020px;
     height: 710px;
     margin-top: -730px;
-    background-color: rgb(178, 208, 226);  
+    background-color: skyblue;  
 }
 
 .logintitle {
@@ -44,8 +60,8 @@
     width: 60%;
     margin-bottom: 35px;
     margin-top: 35px;
-    margin-left: 135px;
-   
+    margin-left: 125px;
+    text-decoration-color: rgb(5, 5, 5);  
 }
 
 .form-control-icon {
@@ -54,9 +70,9 @@
     display: block;
     width: 2.375rem;
     height: 5rem;
-    margin-left: 10px;
+    margin-left: -50px;
     margin-top: -17px;
-    line-height: 3.5rem;
+    line-height: 5.5rem;
     text-align: center;
     pointer-events: none;
     color: rgb(8, 8, 8);
@@ -69,9 +85,9 @@
     display: block;
     width: 2.375rem;
     height: 5rem;
-    margin-left: 10px;
+    margin-left: -50px;
     margin-top: -17px;
-    line-height: 3.5rem;
+    line-height: 5.5rem;
     text-align: center;
     pointer-events: none;
     color: rgb(17, 17, 17);
@@ -113,6 +129,7 @@ hr {
 
 .text-center{
 text-align: center;
+margin-top: 20px;
 }
 
 .userIcon {
