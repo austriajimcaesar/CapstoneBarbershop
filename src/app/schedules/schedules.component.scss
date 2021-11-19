@@ -197,51 +197,51 @@ input[type="checkbox"]{
   font-size: 20px;
   font-weight: 500;
 }
-.home-content .sales-boxes{
+.home-content .sched-boxes{
   display: flex;
   justify-content: space-between;
   /* padding: 0 20px; */
 }
 
 /* left box */
-.home-content .sales-boxes .recent-sales{
-  width: 65%;
+.home-content .sched-boxes .recent-sched{
+  width: 100%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.home-content .sales-boxes .sales-details{
+.home-content .sched-boxes .sched-details{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.sales-boxes .box .title{
+.sched-boxes .box .title{
   font-size: 24px;
   font-weight: 500;
   /* margin-bottom: 10px; */
 }
-.sales-boxes .sales-details li.topic{
+.sched-boxes .sched-details li.topic{
   font-size: 20px;
   font-weight: 500;
 }
-.sales-boxes .sales-details li{
+.sched-boxes .sched-details li{
   list-style: none;
   margin: 8px 0;
 }
-.sales-boxes .sales-details li a{
+.sched-boxes .sched-details li a{
   font-size: 18px;
   color: #333;
   font-size: 400;
   text-decoration: none;
 }
-.sales-boxes .box .button{
+.sched-boxes .box .button{
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.sales-boxes .box .button a{
+.sched-boxes .box .button a{
   color: #fff;
   background: #0A2558;
   padding: 4px 12px;
@@ -251,12 +251,12 @@ input[type="checkbox"]{
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.sales-boxes .box .button a:hover{
+.sched-boxes .box .button a:hover{
   background:  #0d3073;
 }
 
 /* Right box */
-.home-content .sales-boxes .attendance{
+.home-content .sched-boxes .attendance{
   width: 35%;
   background: #fff;
   padding: 20px 30px;
@@ -264,13 +264,13 @@ input[type="checkbox"]{
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.sales-boxes .attendance li{
+.sched-boxes .attendance li{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 10px 0;
 }
-.sales-boxes .attendance li a img{
+.sched-boxes .attendance li a img{
   height: 40px;
   width: 40px;
   object-fit: cover;
@@ -278,12 +278,12 @@ input[type="checkbox"]{
   margin-right: 10px;
   background: #333;
 }
-.sales-boxes .attendance li a{
+.sched-boxes .attendance li a{
   display: flex;
   align-items: center;
   text-decoration: none;
 }
-.sales-boxes .attendance li .barber,
+.sched-boxes .attendance li .barber,
 .mark{
   font-size: 17px;
   font-weight: 400;
@@ -316,15 +316,15 @@ input[type="checkbox"]{
   }
 }
 @media (max-width: 1150px) {
-  .home-content .sales-boxes{
+  .home-content .sched-boxes{
     flex-direction: column;
   }
-  .home-content .sales-boxes .box{
+  .home-content .sched-boxes .box{
     width: 100%;
     overflow-x: scroll;
     margin-bottom: 30px;
   }
-  .home-content .sales-boxes .attendance{
+  .home-content .sched-boxes .attendance{
     margin: 0;
   }
 }
@@ -344,10 +344,7 @@ input[type="checkbox"]{
     height: 50px;
     min-width: 40px;
   }
-  .home-content .sales-boxes .sales-details{
+  .home-content .sched-boxes .sched-details{
     width: 560px;
   }
-}
-.btn{
-  margin-left: 77%;
 }

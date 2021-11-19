@@ -197,51 +197,51 @@ input[type="checkbox"]{
   font-size: 20px;
   font-weight: 500;
 }
-.home-content .sales-boxes{
+.home-content .barber-boxes{
   display: flex;
   justify-content: space-between;
   /* padding: 0 20px; */
 }
 
 /* left box */
-.home-content .sales-boxes .recent-sales{
-  width: 65%;
+.home-content .barber-boxes .recent-barber{
+  width: 100%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.home-content .sales-boxes .sales-details{
+.home-content .barber-boxes .barber-details{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.sales-boxes .box .title{
+.barber-boxes .box .title{
   font-size: 24px;
   font-weight: 500;
   /* margin-bottom: 10px; */
 }
-.sales-boxes .sales-details li.topic{
+.barber-boxes .barber-details li.topic{
   font-size: 20px;
   font-weight: 500;
 }
-.sales-boxes .sales-details li{
+.barber-boxes .barber-details li{
   list-style: none;
   margin: 8px 0;
 }
-.sales-boxes .sales-details li a{
+.barber-boxes .barber-details li a{
   font-size: 18px;
   color: #333;
   font-size: 400;
   text-decoration: none;
 }
-.sales-boxes .box .button{
+.barber-boxes .box .button{
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.sales-boxes .box .button a{
+.barber-boxes .box .button a{
   color: #fff;
   background: #0A2558;
   padding: 4px 12px;
@@ -251,12 +251,12 @@ input[type="checkbox"]{
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.sales-boxes .box .button a:hover{
+.barber-boxes .box .button a:hover{
   background:  #0d3073;
 }
 
 /* Right box */
-.home-content .sales-boxes .attendance{
+.home-content .barber-boxes .attendance{
   width: 35%;
   background: #fff;
   padding: 20px 30px;
@@ -264,13 +264,13 @@ input[type="checkbox"]{
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.sales-boxes .attendance li{
+.barber-boxes .attendance li{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 10px 0;
 }
-.sales-boxes .attendance li a img{
+.barber-boxes .attendance li a img{
   height: 40px;
   width: 40px;
   object-fit: cover;
@@ -278,12 +278,12 @@ input[type="checkbox"]{
   margin-right: 10px;
   background: #333;
 }
-.sales-boxes .attendance li a{
+.barber-boxes .attendance li a{
   display: flex;
   align-items: center;
   text-decoration: none;
 }
-.sales-boxes .attendance li .barber,
+.barber-boxes .attendance li .barber,
 .mark{
   font-size: 17px;
   font-weight: 400;
@@ -316,15 +316,15 @@ input[type="checkbox"]{
   }
 }
 @media (max-width: 1150px) {
-  .home-content .sales-boxes{
+  .home-content .barber-boxes{
     flex-direction: column;
   }
-  .home-content .sales-boxes .box{
+  .home-content .barber-boxes .box{
     width: 100%;
     overflow-x: scroll;
     margin-bottom: 30px;
   }
-  .home-content .sales-boxes .attendance{
+  .home-content .barber-boxes .attendance{
     margin: 0;
   }
 }
@@ -344,10 +344,7 @@ input[type="checkbox"]{
     height: 50px;
     min-width: 40px;
   }
-  .home-content .sales-boxes .sales-details{
+  .home-content .barber-boxes .barber-details{
     width: 560px;
   }
-}
-.btn{
-  margin-left: 77%;
 }

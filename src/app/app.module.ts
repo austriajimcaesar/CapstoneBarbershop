@@ -8,6 +8,11 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SalesComponent } from './sales/sales.component';
+import { AttendanceComponent } from './attendance/attendance.component';
+import { BarbersComponent } from './barbers/barbers.component';
+import { UsersComponent } from './users/users.component';
+import { SchedulesComponent } from './schedules/schedules.component';
 
 
 @NgModule({
@@ -16,6 +21,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
+    SalesComponent,
+    AttendanceComponent,
+    BarbersComponent,
+    UsersComponent,
+    SchedulesComponent,
 
   ],
   imports: [
