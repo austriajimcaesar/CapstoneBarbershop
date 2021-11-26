@@ -10,7 +10,7 @@ nav{
   display: flex;
   height: 80px;
   width: 100%;
-  background: #1b1b1b;
+
   align-items: center;
   justify-content: space-between;
   padding: 0 50px 0 100px;
@@ -32,7 +32,7 @@ nav ul li{
 nav ul li a{
   color: #f2f2f2;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 500;
   padding: 8px 15px;
   border-radius: 5px;
@@ -347,4 +347,13 @@ input[type="checkbox"]{
   .home-content .sched-boxes .sched-details{
     width: 560px;
   }
+}
+
+.nav-wrapper{
+  margin-left: 60%;
+  height: 3%;
+  width: 40%;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+
 }

@@ -20,6 +20,8 @@
         <li><a routerLink="/barbers">Barbers</a></li>
         <li><a routerLink="/users">Users</a></li>
         <li><a routerLink="/schedules">Schedules</a></li>
+        <li><a routerLink="/pos">Pos</a></li>
+      
 <br>
         <li><a routerLink="/"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
       </ul>
@@ -32,7 +34,18 @@
 
       <div class="sales-boxes">
         <div class="recent-sales box">
-          <div class="title">Recent Sales</div>
+          <div class="title">Recent Sales
+            <div class="nav-wrapper">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row"></div>
           <div class="sales-details">
             <ul class="details">
               <li class="topic">ID</li>
@@ -76,6 +89,8 @@
         </div>
       </div>
     </div>
+    
+   
   </section>
 
     <!-- <div class="content">

@@ -13,6 +13,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { BarbersComponent } from './barbers/barbers.component';
 import { UsersComponent } from './users/users.component';
 import { SchedulesComponent } from './schedules/schedules.component';
+import { PosComponent } from './pos/pos.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SchedulesComponent } from './schedules/schedules.component';
     BarbersComponent,
     UsersComponent,
     SchedulesComponent,
+    PosComponent,
 
   ],
   imports: [

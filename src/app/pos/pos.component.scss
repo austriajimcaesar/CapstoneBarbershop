@@ -137,6 +137,7 @@ input[type="checkbox"]{
   padding: 15px 14px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  margin-top: 1%;
 }
 .overview-boxes .box-topic{
   font-size: 20px;
@@ -205,7 +206,7 @@ input[type="checkbox"]{
 
 /* left box */
 .home-content .sales-boxes .recent-sales{
-  width: 65%;
+  width: 100%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px;
@@ -348,6 +349,12 @@ input[type="checkbox"]{
     width: 560px;
   }
 }
-.btn{
-  margin-left: 74%;
-}
+.nav-wrapper{
+    margin-left: 60%;
+    height: 2%;
+    width: 40%;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  
+  }
+  
