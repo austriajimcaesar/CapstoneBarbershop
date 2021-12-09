@@ -5,12 +5,23 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 } 
+.navbarTitle {
+  margin-left: 2%;
+  color: white;
+  width: 86px;
+  height: 86px;
+  margin-top: 3%;
+  cursor: pointer;
+}
 
+.brand{
+margin-left: -15%;
+}
 nav{
   display: flex;
-  height: 80px;
+  height: 100px;
   width: 100%;
-
+background-color:  rgb(143,188,143);
   align-items: center;
   justify-content: space-between;
   padding: 0 50px 0 100px;
@@ -18,8 +29,9 @@ nav{
 }
 nav .logo{
   color: #fff;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
+  
 }
 nav ul{
   display: flex;

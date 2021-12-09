@@ -8,7 +8,10 @@
 
   
     <nav>
-      <div class="logo">E.M.E.S Barbershop</div>
+      <div class="container-fluid">
+        <img src="/assets/Logo.png" class="navbar-brand navbarTitle" routerLink="/dashboard">  
+      </div>
+      <a class="brand" style="font-size: x-large;">E.M.E.S. Barbershop</a>
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
@@ -36,6 +39,58 @@
         <div class="recent-sched box">
          
           <div class="title">Schedules
+            <button class="btn waves-effect waves-dark green modal-trigger" data-target="modal1"><i class="fas fa-plus"></i></button>
+
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <h4>Add Schedule</h4>
+               
+                 <div class="row">
+                     <form class="col s12">
+                       <div class="row">
+                         <div class="input-field col s6">
+                           <i class="material-icons prefix">perm_contact_calendar</i>
+                           <input disabled id="icon_id" type="text" class="validate">
+                           <label class="active" for="icon_id">ID</label>
+                         </div>
+                         <div class="input-field col s6">
+                           <i class="material-icons prefix">person</i>
+                           <input id="icon_fname" type="text" class="validate">
+                           <label class="active" for="icon_user">User</label>
+                         </div>
+                         <div class="input-field col s6">
+                          <i class="material-icons prefix">content_cut</i>
+                          <input id="icon_lname" type="text" class="validate">
+                          <label class="active" for="icon_barber">Barber</label>
+                        </div>
+                         <div class="input-field col s6">   
+                          <i class="material-icons prefix">date_range</i>
+                          <input id="icon_date" type="text" class="datepicker">
+                          <label class="active" for="icon_date">Date</label>
+                        </div>
+                        <div class="input-field col s6">   
+                          <i class="material-icons prefix">access_time</i>
+                          <input id="icon_time" type="text" class="timepicker">
+                          <label class="active" for="icon_time">Time</label>
+                        </div>
+                         <div class="input-field col s6">
+                          <i class="material-icons prefix">person</i>
+                          <input id="icon_stat" type="text" class="validate">
+                          <label class="active" for="icon_stat">Status</label>
+                        </div>
+                       </div>
+                     </form>
+                   </div>
+                 <div class="form-field">
+                   <button class="btn waves-effect waves-dark blue">Done</button>
+                   &nbsp;
+                   <button class="btn waves-effect waves-dark red">Cancel</button>
+                 </div><br>
+             
+              </div>
+            </div>
+       
+
           <div class="nav-wrapper">
             <form>
               <div class="input-field">
@@ -68,8 +123,15 @@
            
           </ul>
           <ul class="details">
-            <li class="topic">Date & Time</li>
-            <li><a>02 Nov 2021 3:00PM</a></li>
+            <li class="topic">Date</li>
+            <li><a>02 Nov 2021</a></li>
+
+           
+            
+          </ul>
+          <ul class="details">
+            <li class="topic">Time</li>
+            <li><a>3:00PM</a></li>
 
            
             
@@ -84,7 +146,7 @@
             <li class="topic">Actions</li>
            
         
-            <button class="btn waves-effect waves-dark blue"><i class="fas fa-edit"></i></button>
+            <button class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
             &nbsp;
             <button class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button>
           

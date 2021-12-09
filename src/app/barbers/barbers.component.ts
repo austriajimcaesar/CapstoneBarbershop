@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import M from 'materialize-css'
 
 @Component({
   selector: 'app-barbers',
@@ -10,6 +11,11 @@ export class BarbersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
+      var elems = document.querySelectorAll('.modal');
+      var options = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+   
   }
 
 }

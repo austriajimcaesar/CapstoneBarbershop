@@ -8,13 +8,21 @@
 
   
     <nav>
-      <div class="logo">E.M.E.S Barbershop</div>
+     
+      <div class="container-fluid">
+        <img src="/assets/Logo.png" class="navbar-brand navbarTitle" routerLink="/dashboard">  
+      </div>
+      <a class="brand" style="font-size: x-large;">E.M.E.S. Barbershop</a>
+      
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
       </label>
+     
+      
       
       <ul>
+        
         <li><a class="active" routerLink="/dashboard">Dashboard</a></li>
         <li><a  routerLink="/sales">Sales</a></li>
         <li><a  routerLink="/barbers">Barbers</a></li>
