@@ -14,6 +14,8 @@ import { BarbersComponent } from './barbers/barbers.component';
 import { UsersComponent } from './users/users.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { PosComponent } from './pos/pos.component';
+import { DataService } from './data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,7 +29,7 @@ import { PosComponent } from './pos/pos.component';
     BarbersComponent,
     UsersComponent,
     SchedulesComponent,
-    PosComponent,
+    PosComponent
 
   ],
   imports: [
@@ -35,8 +37,9 @@ import { PosComponent } from './pos/pos.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
