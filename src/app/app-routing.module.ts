@@ -27,10 +27,10 @@ const routes: Routes = [
     path: 'sales',
     component: SalesComponent
   },
-  {
-    path: 'pos',
-    component: PosComponent
-  },
+  // {
+  //   path: 'pos',
+  //   component: PosComponent
+  // },
   {
     path: 'barbers',
     component: BarbersComponent
