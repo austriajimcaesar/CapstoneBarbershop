@@ -7,9 +7,9 @@ import { Observable, Subject } from 'rxjs'
 })
 export class DataService {
 
-  // baseURL: string = "http://gordoncollegeccs.edu.ph:4230/api/"
-  baseURL: string = "http://localhost/CapstoneBarbershop/api/"
 
+  baseURL: string = "http://localhost/api/"
+  loginState: boolean = false;
   constructor(private http: HttpClient) { }
 
   private subject = new Subject<any>()
@@ -24,7 +24,7 @@ export class DataService {
 
   sendApiRequest(method: any, data: any) {
     return <any>(
-      this.http.post(this.baseURL + method, data)
+      this.http.post(this.baseURL + method, btoa(JSON.stringify(data)))
     );
   }
 
@@ -33,4 +33,20 @@ export class DataService {
       this.http.post(this.baseURL + method + condition, btoa(JSON.stringify(data)))
     )
   }
+
+  setLogin(): void {
+    window.sessionStorage.setItem('loginState', 'true');
+  }
+
+  setLogout(): void {
+    window.sessionStorage.clear();
+    this.loginState = false;
+  }
+
+  updateResponse(message: string) {
+    this.subject.next({ text: message });
+  }
+
+
+
 }

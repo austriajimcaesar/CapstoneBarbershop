@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.form.valid){
-      this.login();
+      this.loginAdmin();
     }else{
       Swal.fire({
         title: 'Invalid Inputs!',
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.loginData.admin_username = this.form.get("login_username").value;
     this.loginData.admin_password = this.form.get("login_password").value;
  
-    this.ds.sendApiRequest("loginadmin/", this.loginData).subscribe(async (data: any) => {
+    this.ds.sendApiRequest("loginAdmin", this.loginData).subscribe((data: { payload: any[]; }) => {
       this.a = data.payload;  
 
       // this.storage.set('barbers_id', this.a.barbers_id)
@@ -91,6 +91,16 @@ export class LoginComponent implements OnInit {
       }
     }
     );
+  }
+
+  loginAdmin(){
+    this.loginData.admin_username = this.form.get("login_username").value;
+    this.loginData.admin_password = this.form.get("login_password").value;
+
+    this.ds.sendApiRequest("loginAdmin/", this.loginData).subscribe((data: { payload: any[]; }) => {
+      this.a = data.payload;
+      console.log(data.payload)
+    });
   }
 
 }

@@ -16,6 +16,7 @@ import { SchedulesComponent } from './schedules/schedules.component';
 import { PosComponent } from './pos/pos.component';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    FormsModule, 
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [DataService],
