@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.form.valid){
-      this.loginAdmin();
+      this.login();
     }else{
       Swal.fire({
         title: 'Invalid Inputs!',

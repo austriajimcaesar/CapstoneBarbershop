@@ -64,7 +64,7 @@
                 <div class="input-field col s6">
                   <i class="material-icons prefix">content_cut</i>
                   <input id="icon_lname" type="text" class="validate">
-                  <label class="active" for="icon_barber">Barber</label>
+                  <label class="active" for="icon_barber">Barber Name</label>
                 </div>
                 <div class="input-field col s6">
                   <i class="material-icons prefix">payment</i>
@@ -95,44 +95,54 @@
             </div>
           </div>
           <div class="row"></div>
-          <div class="sales-details">
-            <ul class="details">
-              <li class="topic">ID</li>
-              <li><a>1</a></li>
-             
-           
-            </ul>
-            <ul class="details">
-            <li class="topic">User</li>
-            <li><a>JP Cruz</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Barber</li>
-            <li><a>Bernie Inociete</a></li>
-           
-           
-          </ul>
-          <ul class="details">
-            <li class="topic">Payment</li>
-            <li><a>₱80</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Actions</li>
-           
-            <!-- <button class="btn waves-effect waves-dark green"><i class="far fa-money-bill-alt"></i></button>
-            &nbsp; -->
-            <button class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
-            &nbsp;
-            <button class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button>
+ 
+            <table mat-table [dataSource]="dataSource">
+              <!-- Position Column -->
+              <ng-container matColumnDef="pos_id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.pos_id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Barber">
+                <th mat-header-cell *matHeaderCellDef> Barber </th>
+                <td mat-cell *matCellDef="let element"> {{element.barbers_fname}} {{element.barbers_lname}} </td>
+              </ng-container>
+              
+              <ng-container matColumnDef="Payment">
+                <th mat-header-cell *matHeaderCellDef> Payment </th>
+                <td mat-cell *matCellDef="let element"> ₱{{element.pos_payment}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Created">
+                <th mat-header-cell *matHeaderCellDef> Date Created </th>
+                <td mat-cell *matCellDef="let element"> {{element.pos_createdAt}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Updated">
+                <th mat-header-cell *matHeaderCellDef> Date Updated </th>
+                <td mat-cell *matCellDef="let element"> {{element.pos_updatedAt}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element"> <button class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
+                  &nbsp;
+                  <button class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button> </td>
+              </ng-container>
           
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                           showFirstLastButtons 
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>
             
-            
-          </ul>
-          </div>
+             
+
+    
           <!-- <div class="button">
             <a routerLink="/">See All</a>
           </div> -->

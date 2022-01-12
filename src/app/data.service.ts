@@ -16,7 +16,7 @@ export class DataService {
 
   sendUpdate(message: string) {
     this.subject.next({ text: message })
-  }
+  }r
 
   getUpdate(): Observable<any> {
     return this.subject.asObservable()

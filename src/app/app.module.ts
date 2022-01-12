@@ -17,7 +17,8 @@ import { PosComponent } from './pos/pos.component';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatSliderModule,
     FormsModule, 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
