@@ -121,8 +121,32 @@ export class SalesComponent implements OnInit {
       }
     })
   }
-  deleteSales(){
-    
+  salesDelete: any = {};
+  deleteSales(id){
+    this.salesDelete.pos_isDeleted = 1;
+    Swal.fire({
+      title: 'Warning',
+      text: 'Do you want to delete?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest2("updateSales/", this.salesDelete, id).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Sale Updated!',
+            'success'
+          )
+          this.c = data.payload;
+          this.selectPosBarbers();
+          
+        });
+      }
+    })
   }
   salesUpdate: any = {};
   updateSales(){

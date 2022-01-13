@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+// declare const M: any;
 import M from 'materialize-css'
 import { DataService } from '../data.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-schedules',
@@ -10,9 +15,16 @@ import { DataService } from '../data.service';
 export class SchedulesComponent implements OnInit {
   public schedules: any[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private ds: DataService) { }
+  a: any[] = [];
+  b: any[] = [];
+  displayedColumns: string[] = ['Schedule ID', 'User Name', 'Barber Name', 'Date'];
+  dataSource:any;
 
-  ngOnInit(): void {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  
+  ngOnInit(){
   
     var elems = document.querySelectorAll('.modal');
     var options = document.querySelectorAll('.modal');
@@ -25,10 +37,24 @@ export class SchedulesComponent implements OnInit {
     this.getSchedules();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+
   getSchedules() {
-    this.dataService.sendApiRequest("selectScheduleJoin/", null).subscribe((res: any) => {
-      this.schedules = res.data
-      console.log(this.schedules);
+    this.ds.sendApiRequest("selectScheduleJoin/", null).subscribe((data: { payload: any[]; }) => {
+      this.a = data.payload;
+      this.a = data.payload;
+      this.dataSource = new MatTableDataSource(this.a);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      console.log(this.a)
     })
   }
 

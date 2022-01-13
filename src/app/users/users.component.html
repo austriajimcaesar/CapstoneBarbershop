@@ -33,106 +33,64 @@
 <section>
  <br>
     <div class="home-content">
-     
+      <div class="recent-user box">
 
-      <div class="user-boxes">
-        <div class="recent-user box">
+      <div class="row"></div>  
+      <mat-form-field appearance="standard">
+        <mat-label><i class="material-icons">search</i> Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Barber" #input>
+      </mat-form-field>
+    
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- Position Column -->
+          <ng-container matColumnDef="User ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_id}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Username">
+            <th mat-header-cell *matHeaderCellDef > Username </th>
+            <td mat-cell *matCellDef="let element">  {{element.users_username}} </td>
+          </ng-container>
           
-          <div class="title">Users Information
-            <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input id="search" type="search" required>
-                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                  <i class="material-icons">close</i>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="row"></div>
-          <div class="user-details">
-            <ul class="details">
-              <li class="topic">ID</li>
-              <li><a>1</a></li>
-             
-           
-            </ul>
-            <ul class="details">
-            <li class="topic">Username</li>
-            <li><a>JP Cruz</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Password</li>
-            <li><a>******</a></li>
-           
-           
-          </ul>
-          <ul class="details">
-            <li class="topic">Contact #</li>
-            <li><a>09123456789</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Email</li>
-            <li><a>customer@gmail.com</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">House #</li>
-            <li><a>123</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Street</li>
-            <li><a>Begonia</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Barangay</li>
-            <li><a>Sta. Rita</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">City</li>
-            <li><a>Olongapo</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">First Name</li>
-            <li><a>Jampol</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Last Name</li>
-            <li><a>Cruz</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Actions</li>
-           
-            <div class="col s6 push-5">
-            <button class="btn waves-effect waves-dark blue"><i class="fas fa-edit"></i></button>
-            &nbsp;
-            <button class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button>
-             </div>
-            
-            
-          </ul>
-          </div>
-          <!-- <div class="button">
-            <a routerLink="/">See All</a>
-          </div> -->
-        </div>
+          <ng-container matColumnDef="First Name">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_fname}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Last Name">
+            <th mat-header-cell *matHeaderCellDef > Last Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_lname}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_email}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Contact No">
+            <th mat-header-cell *matHeaderCellDef> Contact No </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_contactno}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_houseno}} {{element.users_street}}, {{element.users_brgy}}, {{element.users_city}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons 
+                       aria-label="Select page of periodic elements">
+        </mat-paginator> 
+                      
       </div>
     </div>
   </section>

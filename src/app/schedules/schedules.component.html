@@ -39,8 +39,7 @@
         <div class="recent-sched box">
          
           <div class="title">Schedules
-            <button class="btn waves-effect waves-dark green modal-trigger" data-target="modal1"><i class="fas fa-plus"></i></button>
-
+           
             <div id="modal1" class="modal">
               <div class="modal-content">
                 <h4>Add Schedule</h4>
@@ -91,68 +90,46 @@
             </div>
        
 
-          <div class="nav-wrapper">
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" required>
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-              </div>
-            </form>
-          </div>
-        </div>
-          <div class="row"></div>
-          <div class="row"></div>
-          <div class="sched-details">
-            <ul class="details">
-              <li class="topic">ID</li>
-              <li><a>1</a></li>
-             
-           
-            </ul>
-            <ul class="details">
-            <li class="topic">User ID</li>
-            <li><a>1</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Barber ID</li>
-            <li><a>1</a></li>
-           
-           
-          </ul>
-          <ul class="details">
-            <li class="topic">Date</li>
-            <li><a>02 Nov 2021</a></li>
-
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Time</li>
-            <li><a>3:00PM</a></li>
-
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Status</li>
-            <li><a>Done</a></li>
-           
-            
-          </ul>
-          <ul class="details">
-            <li class="topic">Actions</li>
-           
-        
-            <button class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
-            &nbsp;
-            <button class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button>
+            <div class="row"></div>  
+            <mat-form-field appearance="standard">
+              <mat-label><i class="material-icons">search</i> Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Barber" #input>
+            </mat-form-field>
           
+              <table mat-table [dataSource]="dataSource" matSort>
+                <!-- Position Column -->
+                <ng-container matColumnDef="Schedule ID">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.schedules_id}} </td>
+                </ng-container>
+          
+                <ng-container matColumnDef="User Name">
+                  <th mat-header-cell *matHeaderCellDef > User's Name </th>
+                  <td mat-cell *matCellDef="let element">  {{element.users_fname}} {{element.users_lname}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="Barber Name">
+                  <th mat-header-cell *matHeaderCellDef> Barber's Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.barbers_fname}} {{element.barbers_lname}}</td>
+                </ng-container>
+          
+                <ng-container matColumnDef="Date">
+                  <th mat-header-cell *matHeaderCellDef > Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.schedules_date}} </td>
+                </ng-container>
             
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+              </table>
             
-          </ul>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                             showFirstLastButtons 
+                             aria-label="Select page of periodic elements">
+              </mat-paginator> 
           </div>
           <!-- <div class="button">
             <a routerLink="/">See All</a>
