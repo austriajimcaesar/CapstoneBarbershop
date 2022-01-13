@@ -38,73 +38,34 @@
       <div class="sales-boxes">
         <div class="recent-sales box">
           <div class="title">Recent Sales
-            <button class="btn waves-effect waves-dark green btn modal-trigger" data-target="modal1"><i class="fas fa-plus"></i></button>
+            <button (click)="clear()"class="btn waves-effect waves-dark green btn modal-trigger" data-target="modal1"><i class="fas fa-plus"></i></button>
 
    <!-- Modal Trigger -->
    <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
 
-   <!-- Modal Structure -->
-   <div id="modal1" class="modal">
-     <div class="modal-content">
-       <h4>Add Customer</h4>
-       <div class="card-content">
-        <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">perm_contact_calendar</i>
-                  <input disabled id="icon_fname" type="text" class="validate">
-                  <label class="active" for="icon_id">ID</label>
-                </div>
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">person</i>
-                  <input id="icon_fname" type="text" class="validate">
-                  <label class="active" for="icon_cname">Customer</label>
-                </div>
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">content_cut</i>
-                  <input id="icon_lname" type="text" class="validate">
-                  <label class="active" for="icon_barber">Barber Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">payment</i>
-                  <input id="icon_mail" type="text" class="validate">
-                  <label class="active" for="icon_payment">Payment</label>
-                </div>
-              </div>
-            </form>
-          </div>
-        <div class="form-field">
-          <button class="btn waves-effect waves-dark blue">Done</button>
-          &nbsp;
-          <button class="btn waves-effect waves-dark red">Cancel</button>
-        </div><br>
-    </div>
-     </div>
-   </div>
+   
          
 
             <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input id="search" type="search" required>
-                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                  <i class="material-icons">close</i>
-                </div>
-              </form>
+              
             </div>
           </div>
           <div class="row"></div>
- 
-            <table mat-table [dataSource]="dataSource">
+
+          <mat-form-field appearance="standard">
+            <mat-label><i class="material-icons">search</i> Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Barber" #input>
+          </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort>
               <!-- Position Column -->
               <ng-container matColumnDef="pos_id">
-                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                 <td mat-cell *matCellDef="let element"> {{element.pos_id}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Barber">
-                <th mat-header-cell *matHeaderCellDef> Barber </th>
+                <th mat-header-cell *matHeaderCellDef > Barber </th>
                 <td mat-cell *matCellDef="let element"> {{element.barbers_fname}} {{element.barbers_lname}} </td>
               </ng-container>
               
@@ -114,7 +75,7 @@
               </ng-container>
 
               <ng-container matColumnDef="Created">
-                <th mat-header-cell *matHeaderCellDef> Date Created </th>
+                <th mat-header-cell *matHeaderCellDef > Date Created </th>
                 <td mat-cell *matCellDef="let element"> {{element.pos_createdAt}} </td>
               </ng-container>
 
@@ -125,7 +86,8 @@
 
               <ng-container matColumnDef="Actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
-                <td mat-cell *matCellDef="let element"> <button class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
+                <td mat-cell *matCellDef="let element"> 
+                  <button (click)="fillModal(element.pos_id, element.barbers_id, element.barbers_fname, element.barbers_lname, element.pos_payment, element.pos_createdAt, element.pos_updatedAt)" class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
                   &nbsp;
                   <button class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button> </td>
               </ng-container>
@@ -133,6 +95,10 @@
           
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
             </table>
           
             <mat-paginator [pageSizeOptions]="[5, 10, 20]"
@@ -146,6 +112,65 @@
           <!-- <div class="button">
             <a routerLink="/">See All</a>
           </div> -->
+
+          <!-- Modal Structure -->
+   <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Add Sale</h4>
+      <div class="card-content">
+       <div class="row">
+           <form class="col s12">
+             <div class="row">
+               <div class="input-field col s6">
+                 <i class="material-icons prefix">perm_contact_calendar</i>
+                 <input disabled id="icon_fname" type="text" class="validate" name="posidNg" [(ngModel)]="posidNg">
+                 <label class="active" for="icon_id">ID</label>
+               </div>
+               <div class="input-field col s6">
+                 <i class="material-icons prefix">content_cut</i>
+                 <input type="text" id="autocomplete-input1" class="autocomplete" name="barberNg" [(ngModel)]="barberNg">
+                 <label class="active" for="autocomplete-input1">Barber</label>
+               </div>
+               <!-- <div class="input-field col s6">
+                <i class="material-icons prefix">content_cut</i>
+               <select>
+                <ng-container *ngFor="let data of a" >
+                  <option selected *ngIf="data.barbers_id==barbersidNg" value="{{data.barbers_id}}">{{data.barbers_fname}} {{data.barbers_lname}}</option>
+                  <option value="{{data.barbers_id}}">{{data.barbers_fname}} {{data.barbers_lname}}</option>
+                </ng-container>
+              </select>
+              <label for="cars">Barber</label>
+              </div> -->
+               <div class="input-field col s6">
+                <i class="material-icons prefix">payment</i>
+                 <input id="icon_lname" type="text" class="validate" name="paymentNg" [(ngModel)]="paymentNg">
+                 <label class="active" for="icon_barber">Payment</label>
+               </div>
+               <div class="input-field col s6">
+                 <i class="material-icons prefix">payment</i>
+                 <input disabled id="icon_mail" type="text" class="validate" name="createdNg" [(ngModel)]="createdNg">
+                 <label class="active" for="icon_payment">Created At</label>
+               </div>
+               <div class="input-field col s6">
+                <i class="material-icons prefix">perm_contact_calendar</i>
+                <input disabled id="icon_mail" type="text" class="validate" name="updatedNg" [(ngModel)]="updatedNg">
+                <label class="active" for="icon_payment">Updated At</label>
+              </div>
+             </div>
+             
+           </form>
+         </div>
+       <div class="form-field">
+         <button *ngIf="updateTrue" (click)="updateSales()" class="btn waves-effect waves-dark green">Update</button>
+         <button *ngIf="updateTrue==false"(click)="addSales()" class="btn waves-effect waves-dark blue">Add</button>
+         &nbsp;
+         <button  class="btn waves-effect waves-dark red submit modal-close">Cancel</button>
+       </div><br>
+      </div>
+    </div>
+  </div>
+
+
         </div>
       </div>
     </div>

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+// declare const M: any;
+import M from 'materialize-css'
+import { DataService } from '../data.service';
+
 
 @Component({
   selector: 'app-dashboard',

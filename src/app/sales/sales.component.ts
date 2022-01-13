@@ -4,6 +4,8 @@ import M from 'materialize-css'
 import { DataService } from '../data.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sales',
@@ -13,17 +15,40 @@ import {MatTableDataSource} from '@angular/material/table';
 
 
 export class SalesComponent implements OnInit {
+  
   a: any[] = [];
+  b: any[] = [];
+  c: any[] = [];
   displayedColumns: string[] = ['pos_id', 'Barber', 'Payment', 'Created', 'Updated', 'Actions'];
   dataSource:any;
+  posidNg: any;
+  barberNg: any;
+  paymentNg: any;
+  createdNg: any;
+  updatedNg: any;
+  barbersidNg:any;
+  barbersidCut:any;
+  updateTrue:boolean;
+  
+  requestPayload: any = {};
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(private ds:DataService) { }
    
 
   AfterViewInit(){
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
-  ngOnInit(): void {
+  ngOnInit() {
+    var elem1 = document.querySelector('.autocomplete');
+    var options1 = {minLength: 0,
+                    data: this.b,
+                    onAutocomplete: function(val) {
+                      window.sessionStorage.setItem('barberidAuto', val);
+                      console.log(window.sessionStorage.getItem('barberidAuto'));
+                  }};
     // M.AutoInit();
 
     // document.addEventListener('DOMContentLoaded', function() {
@@ -34,14 +59,125 @@ export class SalesComponent implements OnInit {
     var instances = M.Modal.init(elems, options);
     
     this.selectPosBarbers();
+    setTimeout(() => {
+      M.AutoInit();
+      M.Autocomplete.init(elem1, options1);
+  }, 100);
+  
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   selectPosBarbers() {
     this.ds.sendApiRequest("selectPosBarbers/", null).subscribe((data: { payload: any[]; }) => {
       this.a = data.payload;
       this.dataSource = new MatTableDataSource(this.a);
-      console.log(this.dataSource.data)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      for (var i = 0; i < this.a.length; i++) {
+        //console.log(countryArray[i].name);
+        this.b[this.a[i].barbers_id+". "+this.a[i].barbers_fname+" "+this.a[i].barbers_lname] = this.a[i].flag; //countryArray[i].flag or null
+      }
+      console.log(this.a[0].barbers_fname)
     });
+  }
+
+  addSales(){
+    const requestPayload: any = {};
+    this.barbersidCut = window.sessionStorage.getItem('barberidAuto')
+    this.barbersidCut = this.barbersidCut.split('.')[0];
+    console.log(this.barbersidCut);
+    requestPayload.pos_payment =  this.paymentNg;
+    requestPayload.pos_barbers_id = this.barbersidCut;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Are you sure you want to add a sale?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("addSales/", requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Sale Added!',
+            'success'
+          )
+          this.c = data.payload;
+        this.selectPosBarbers();
+          
+        });
+      }
+    })
+  }
+  deleteSales(){
+    
+  }
+  salesUpdate: any = {};
+  updateSales(){
+    this.salesUpdate.pos_payment = this.paymentNg;
+    this.barbersidCut = window.sessionStorage.getItem('barberidAuto')
+    this.barbersidCut = this.barbersidCut.split('.')[0];
+    this.salesUpdate.pos_barbers_id = this.barbersidCut
+
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to update?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest2("updateSales/", this.salesUpdate, this.posidNg).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Sale Updated!',
+            'success'
+          )
+          this.c = data.payload;
+          this.selectPosBarbers();
+          
+        });
+      }
+    })
+  }
+  
+  
+
+  
+  clear(){
+    this.updateTrue = false;
+    this.posidNg = "";
+    this.barberNg = "" ;
+    this.paymentNg = ""; 
+    this.createdNg= "";
+    this.updatedNg = "";
+  }
+
+  fillModal(posid, barbersid, fname, lname, payment, created, updated){
+    this.updateTrue = true;
+    this.posidNg = posid;
+    this.barbersidNg = barbersid;
+    this.barberNg = barbersid +". "+ fname + " " + lname;
+    this.paymentNg = payment;
+    this.createdNg= created;
+    this.updatedNg = updated;
+    this.barbersidCut = this.barberNg.split('.')[0];
+
   }
 }
 
