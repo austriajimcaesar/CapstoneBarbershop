@@ -154,6 +154,10 @@ export class SalesComponent implements OnInit {
     this.barbersidCut = window.sessionStorage.getItem('barberidAuto')
     this.barbersidCut = this.barbersidCut.split('.')[0];
     this.salesUpdate.pos_barbers_id = this.barbersidCut
+    if(this.salesUpdate.pos_barbers_id==""){
+      this.barberNg.split('.')[0];
+      this.salesUpdate.pos_barbers_id=this.barberNg;
+    }
 
     Swal.fire({
       title: 'Confirmation',
