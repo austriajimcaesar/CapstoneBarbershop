@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-// declare const M: any;
+declare const M: any;
 import M from 'materialize-css'
 import { DataService } from '../data.service';
 
@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
     this.selectPosBarbers()
     this.getBarbers();
     this.getSchedules();
+    M.AutoInit();
   }
 
   selectPosBarbers() {
