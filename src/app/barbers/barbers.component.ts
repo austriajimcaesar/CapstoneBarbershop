@@ -19,12 +19,15 @@ export class BarbersComponent implements OnInit {
   lastnameNg:any;
   emailNg:any;
   contactnoNg:any;
+  bbidNg:any;
+  updateTrue:boolean = false;
+  requestPayload: any = {};
 
   public barbers: any[] = [];
   constructor(private ds: DataService) { }
   a: any[] = [];
   b: any[] = [];
-  displayedColumns: string[] = ['Barber ID', 'Username', 'First Name', 'Last Name', 'Email', 'Contact No'];
+  displayedColumns: string[] = ['Barber ID', 'Username', 'First Name', 'Last Name', 'Email', 'Contact No', 'Actions'];
   dataSource:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -54,6 +57,64 @@ export class BarbersComponent implements OnInit {
       console.log(this.a)
     });
   }
+
+  deleteBarbers(id){
+    this.requestPayload.barbers_id = id;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to delete?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("deleteBarbers/", this.requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Sale Updated!',
+            'success'
+          )
+          this.getBarbers();
+          
+        });
+      }
+    })
+  }
+
+  updateBarbers(){
+    this.requestPayload.barbers_password = this.passwordNg;
+    this.requestPayload.barbers_id = this.bbidNg;
+    this.requestPayload.barbers_username = this.usernameNg;
+    this.requestPayload.barbers_fname = this.firstnameNg;
+    this.requestPayload.barbers_lname = this.lastnameNg;
+    this.requestPayload.barbers_email = this.emailNg;
+    this.requestPayload.barbers_contactno = this.contactnoNg;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to update?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("updateBarbers/", this.requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Sale Updated!',
+            'success'
+          )
+          this.getBarbers();
+          
+        });
+      }
+    })
+  }
   
   clear(){
     this.usernameNg = "";
@@ -62,6 +123,21 @@ export class BarbersComponent implements OnInit {
     this.lastnameNg= "";
     this.emailNg = "";
     this.contactnoNg = "";
+    this.bbidNg = "";
+    this.updateTrue = false;
+  }
+
+  fillModal(bbid, username, password, fname, lname, email, contact){
+    this.bbidNg = bbid;
+    this.updateTrue = true;
+    this.usernameNg = username;
+    this.passwordNg = password;
+    this.firstnameNg = fname;
+    this.lastnameNg = lname;
+    this.emailNg= email;
+    this.contactnoNg = contact;
+
+
   }
 
   signupbarbers(){

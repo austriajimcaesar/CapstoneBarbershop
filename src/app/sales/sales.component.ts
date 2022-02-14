@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // declare const M: any;
-import M from 'materialize-css'
+declare const M: any;
+import * as M from "materialize-css";
 import { DataService } from '../data.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
