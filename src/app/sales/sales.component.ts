@@ -20,6 +20,7 @@ export class SalesComponent implements OnInit {
   a: any[] = [];
   b: any[] = [];
   c: any[] = [];
+  e: any[] = [];
   displayedColumns: string[] = ['pos_id', 'Barber', 'Payment', 'Created', 'Updated', 'Actions'];
   dataSource:any;
   posidNg: any;
@@ -45,7 +46,7 @@ export class SalesComponent implements OnInit {
   ngOnInit() {
     var elem1 = document.querySelector('.autocomplete');
     var options1 = {minLength: 0,
-                    data: this.b,
+                    data: this.e,
                     onAutocomplete: function(val) {
                       window.sessionStorage.setItem('barberidAuto', val);
                       console.log(window.sessionStorage.getItem('barberidAuto'));
@@ -60,6 +61,7 @@ export class SalesComponent implements OnInit {
     var instances = M.Modal.init(elems, options);
     
     this.selectPosBarbers();
+    this.getBarbers();
     setTimeout(() => {
       M.AutoInit();
       M.Autocomplete.init(elem1, options1);
@@ -83,11 +85,22 @@ export class SalesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.a);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      for (var i = 0; i < this.a.length; i++) {
-        //console.log(countryArray[i].name);
-        this.b[this.a[i].barbers_id+". "+this.a[i].barbers_fname+" "+this.a[i].barbers_lname] = this.a[i].flag; //countryArray[i].flag or null
+      // for (var i = 0; i < this.a.length; i++) {
+      //   console.log(this.a[i].barbers_id+". "+this.a[i].barbers_fname+" "+this.a[i].barbers_lname);
+      //   this.b[this.a[i].barbers_id+". "+this.a[i].barbers_fname+" "+this.a[i].barbers_lname] = this.a[i].flag; //countryArray[i].flag or null
+      // }
+      // console.log(this.a)
+    });
+  }
+
+  getBarbers(){
+    this.ds.sendApiRequest("getBarbers/", null).subscribe((data: { payload: any[]; }) => {
+      this.b = data.payload;
+      for (var i = 0; i < this.b.length; i++) {
+        
+        this.e[this.b[i].barbers_id+". "+this.b[i].barbers_fname+" "+this.b[i].barbers_lname] = this.b[i].flag; //countryArray[i].flag or null
+        console.log(this.e);
       }
-      console.log(this.a[0].barbers_fname)
     });
   }
 
