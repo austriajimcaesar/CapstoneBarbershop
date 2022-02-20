@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -8,9 +8,9 @@
 .navbarTitle {
   margin-left: 2%;
   color: white;
-  width: 86px;
-  height: 86px;
-  margin-top: 3%;
+  width: 80px;
+  height: 80px;
+  margin-top: 5%;
   cursor: pointer;
 }
 
@@ -19,9 +19,9 @@ margin-left: -15%;
 }
 nav{
   display: flex;
-  height: 100px;
+  height: 90px;
   width: 100%;
-  background-color:  rgb(143,188,143);
+  background-color:  #82b1ff ;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px 0 100px;
@@ -29,7 +29,7 @@ nav{
 }
 nav .logo{
   color: #fff;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
 }
 nav ul{
@@ -45,11 +45,13 @@ nav ul li a{
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  padding: 8px 15px;
+  padding: 2px 8px;
   border-radius: 5px;
   letter-spacing: 1px;
+  margin-bottom: 20%;
   transition: all 0.3s ease;
 }
+
 nav ul li a.active,
 nav ul li a:hover{
   color: #111;
@@ -221,7 +223,7 @@ input[type="checkbox"]{
   padding: 20px 30px;
   margin: 0 20px;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.651);
 }
 .home-content .barber-boxes .barber-details{
   display: flex;

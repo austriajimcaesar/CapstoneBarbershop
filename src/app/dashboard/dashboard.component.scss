@@ -1,33 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+ 
 } 
+
+
+.icon{
+  margin-left: 12%;
+}
+
 .navbarTitle {
   margin-left: 2%;
   color: white;
-  width: 86px;
-  height: 86px;
-  margin-top: 3%;
+  width: 80px;
+  height: 80px;
+  margin-top: 5%;
   cursor: pointer;
+}
+
+
+.srDate, .srBarber{
+  color: rgb(0, 0, 0);
 }
 
 .brand{
 margin-left: -15%;
 }
+nav.i{
+  position: relative;
+}
 nav{
   display: flex;
-  height: 100px;
+  height: 90px;
   width: 100%;
-background-color:  rgb(143,188,143);
+  background-color:  #82b1ff ;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px 0 100px;
   flex-wrap: wrap;
 }
 nav .logo{
+ 
   color: #fff;
   font-size: 30px;
   font-weight: 600;
@@ -46,9 +62,10 @@ nav ul li a{
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  padding: 8px 15px;
+  padding: 2px 8px;
   border-radius: 5px;
   letter-spacing: 1px;
+  margin-bottom: 20%;
   transition: all 0.3s ease;
 }
 nav ul li a.active,
@@ -145,10 +162,11 @@ input[type="checkbox"]{
   align-items: center;
   justify-content: center;
   width: calc(100% / 4 - 15px);
-  background: #fff;
+  background: white;
   padding: 15px 14px;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  // color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.651);
 }
 .overview-boxes .box-topic{
   font-size: 20px;
@@ -186,7 +204,7 @@ input[type="checkbox"]{
   font-size: 32px;
   height: 50px;
   width: 50px;
-  background: #cce5ff;
+  background: #f7f7f7;
   line-height: 50px;
   text-align: center;
   color: #66b0ff;
@@ -194,16 +212,16 @@ input[type="checkbox"]{
   margin: -15px 0 0 6px;
 }
 .home-content .box .cart.two{
-   color: #2BD47D;
-   background: #C0F2D8;
+   color: white;
+   background: white;
  }
 .home-content .box .cart.three{
    color: #ffc233;
-   background: #ffe8b3;
+   background: rgb(255, 255, 255);
  }
 .home-content .box .cart.four{
    color: #e05260;
-   background: #f7d4d7;
+   background: white;
  }
 .home-content .total-order{
   font-size: 20px;
@@ -218,11 +236,11 @@ input[type="checkbox"]{
 /* left box */
 .home-content .sales-boxes .recent-sales{
   width: 65%;
-  background: #fff;
+  background: white;
   padding: 20px 30px;
   margin: 0 20px;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.651);
 }
 .home-content .sales-boxes .sales-details{
   display: flex;
@@ -232,15 +250,18 @@ input[type="checkbox"]{
 .sales-boxes .box .title{
   font-size: 24px;
   font-weight: 500;
+  color: black;
   /* margin-bottom: 10px; */
 }
 .sales-boxes .sales-details li.topic{
   font-size: 20px;
   font-weight: 500;
+  color: black;
 }
 .sales-boxes .sales-details li{
   list-style: none;
   margin: 8px 0;
+  
 }
 .sales-boxes .sales-details li a{
   font-size: 18px;
@@ -270,11 +291,11 @@ input[type="checkbox"]{
 /* Right box */
 .home-content .sales-boxes .attendance{
   width: 35%;
-  background: #fff;
+  background: #00e5ff;
   padding: 20px 30px;
   margin: 0 20px 0 0;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.651);
 }
 .sales-boxes .attendance li{
   display: flex;
@@ -288,7 +309,7 @@ input[type="checkbox"]{
   object-fit: cover;
   border-radius: 12px;
   margin-right: 10px;
-  background: #333;
+  background: rgb(255, 0, 0);
 }
 .sales-boxes .attendance li a{
   display: flex;

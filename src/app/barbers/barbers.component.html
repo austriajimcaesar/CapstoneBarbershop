@@ -139,6 +139,7 @@
         <td mat-cell *matCellDef="let element"> 
           <button (click)="fillModal(element.barbers_id, element.barbers_username, '',element.barbers_fname, element.barbers_lname, element.barbers_email, element.barbers_contactno)" class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
           &nbsp;
+          &nbsp;
           <button (click)="deleteBarbers(element.barbers_id)" class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button> </td>
       </ng-container>
   
