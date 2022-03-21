@@ -9,7 +9,7 @@ export class DataService {
 
 
   // baseURL: string = "http://localhost/api/"
-  baseURL: string = "http://jet-herecut-com.preview-domain.com/api/";
+  baseURL: string = "https://jet-herecut.com/api/";
   
   loginState: boolean = false;
   constructor(private http: HttpClient) { }
