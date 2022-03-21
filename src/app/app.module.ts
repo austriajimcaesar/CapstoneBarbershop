@@ -24,6 +24,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     
   ],
   providers: [DataService],
