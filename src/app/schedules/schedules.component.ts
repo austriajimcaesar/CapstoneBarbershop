@@ -18,7 +18,7 @@ export class SchedulesComponent implements OnInit {
   constructor(private ds: DataService) { }
   a: any[] = [];
   b: any[] = [];
-  displayedColumns: string[] = ['Schedule ID', 'User Name', 'Barber Name', 'Date'];
+  displayedColumns: string[] = ['Schedule ID', 'User Name', 'Barber Name', 'Date', 'Status'];
   dataSource:any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,7 +50,7 @@ export class SchedulesComponent implements OnInit {
   getSchedules() {
     this.ds.sendApiRequest("selectScheduleJoin/", null).subscribe((data: { payload: any[]; }) => {
       this.a = data.payload;
-      this.a = data.payload;
+      console.log(this.a);
       this.dataSource = new MatTableDataSource(this.a);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

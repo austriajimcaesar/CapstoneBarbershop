@@ -128,8 +128,9 @@ export class SalesComponent implements OnInit {
             'Sale Added!',
             'success'
           )
+          this.clear();
           this.c = data.payload;
-        this.selectPosBarbers();
+          this.selectPosBarbers();
           
         });
       }
