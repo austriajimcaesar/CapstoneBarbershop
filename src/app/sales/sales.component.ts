@@ -31,7 +31,7 @@ export class SalesComponent implements OnInit {
   barbersidNg:any;
   barbersidCut:any;
   updateTrue:boolean;
-  
+  cashierVar:any;
   requestPayload: any = {};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -59,7 +59,8 @@ export class SalesComponent implements OnInit {
     var elems = document.querySelectorAll('.modal');
     var options = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
-    
+    this.cashierVar = window.sessionStorage.getItem('admin_id');
+    console.log(this.cashierVar+"hotdog")
     this.selectPosBarbers();
     this.getBarbers();
     setTimeout(() => {
