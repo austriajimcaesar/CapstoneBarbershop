@@ -24,9 +24,11 @@
         
         <li><a class="active" routerLink="/dashboard">Dashboard</a></li>
         <li><a routerLink="/sales">Sales</a></li>
+        <ng-container *ngIf="adminID==1">
         <li><a routerLink="/barbers">Barbers</a></li>
         <li><a routerLink="/users">Users</a></li>
         <li><a routerLink="/schedules">Schedules</a></li>
+        </ng-container>
         
       
 <br>

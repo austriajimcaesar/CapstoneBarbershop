@@ -8,8 +8,8 @@ import { Observable, Subject } from 'rxjs'
 export class DataService {
 
 
-  // baseURL: string = "http://localhost/api/"
-  baseURL: string = "https://jet-herecut.com/api/";
+  baseURL: string = "http://localhost/api/"
+  // baseURL: string = "https://jet-herecut.com/api/";
   
   loginState: boolean = false;
   constructor(private http: HttpClient) { }

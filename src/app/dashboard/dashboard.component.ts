@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   totalMoneyFiltered: any = 0;
   totalBarber: any = 0;
   totalSchedules: any = 0;
+  adminID:any;
   barberNg: any;
   barbersid: any;
   dateid: any;
@@ -31,6 +32,8 @@ export class DashboardComponent implements OnInit {
     this.selectPosBarbers()
     this.getBarbers();
     this.getSchedules();
+    this.adminID = window.sessionStorage.getItem("admin_id");
+    console.log(this.adminID)
     setTimeout(() => {
       M.AutoInit();
   }, 100);
