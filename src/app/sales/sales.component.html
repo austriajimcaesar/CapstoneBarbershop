@@ -20,9 +20,11 @@
       <ul>
         <li><a routerLink="/dashboard">Dashboard</a></li>
         <li><a class="active" routerLink="/sales">Sales</a></li>
+        <ng-container *ngIf="cashierVar==1">
         <li><a routerLink="/barbers">Barbers</a></li>
         <li><a routerLink="/users">Users</a></li>
         <li><a routerLink="/schedules">Schedules</a></li>
+        </ng-container>
         <!-- <li><a routerLink="/pos">Pos</a></li> -->
       
 <br>
