@@ -84,6 +84,33 @@ export class BarbersComponent implements OnInit {
     })
   }
 
+  z: any[] = [];
+  updateAudits(){
+    this.requestPayload.audits_bool = 1;
+    this.requestPayload.audits_id = this.z[0].audits_id;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("updateAudits/", this.requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Logged Out!',
+            'success'
+          )
+          
+        });
+      }
+    })
+  }
+
   updateBarbers(){
     this.requestPayload.barbers_password = this.passwordNg;
     this.requestPayload.barbers_id = this.bbidNg;

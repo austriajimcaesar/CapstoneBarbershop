@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
 
   loginData: any = {}
   a: any = {};
+  b: any = {};
+    
 
   onSubmit(){
     if(this.form.valid){
@@ -60,7 +62,8 @@ export class LoginComponent implements OnInit {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
               if (result.isConfirmed) {
-              this.router.navigate(['/dashboard']);
+                this.recordAudit(window.sessionStorage.getItem("admin_id"))
+             this.router.navigate(['/dashboard']);
             }
           });
         } else {
@@ -93,14 +96,24 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  loginAdmin(){
-    this.loginData.admin_username = this.form.get("login_username").value;
-    this.loginData.admin_password = this.form.get("login_password").value;
+  recordAudit(userID){
+    const requestPayload: any = {};
+    requestPayload.audits_user = userID;
 
-    this.ds.sendApiRequest("loginAdmin/", this.loginData).subscribe((data: { payload: any[]; }) => {
-      this.a = data.payload;
+    this.ds.sendApiRequest("saveAudit/", requestPayload).subscribe((data: { payload: any[]; }) => {
+      this.b = data.payload;
       console.log(data.payload)
     });
   }
+
+  // loginAdmin(){
+  //   this.loginData.admin_username = this.form.get("login_username").value;
+  //   this.loginData.admin_password = this.form.get("login_password").value;
+
+  //   this.ds.sendApiRequest("loginAdmin/", this.loginData).subscribe((data: { payload: any[]; }) => {
+  //     this.a = data.payload;
+  //     console.log(data.payload)
+  //   });
+  // }
 
 }

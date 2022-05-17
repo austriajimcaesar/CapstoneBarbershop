@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import M from 'materialize-css'
 import { DataService } from '../data.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +25,8 @@ export class DashboardComponent implements OnInit {
   barberNg: any;
   barbersid: any;
   dateid: any;
+
+  requestPayload: any = {};
   constructor(private ds:DataService) { }
 
   ngOnInit() {
@@ -37,6 +39,10 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       M.AutoInit();
   }, 100);
+
+  this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
+    this.z = data.payload;
+  });
   }
 
   testing(){
@@ -45,6 +51,34 @@ export class DashboardComponent implements OnInit {
     this.totalMoneyFiltered = 0;
     this.selectPosBarbersFilter();
     }
+  }
+
+  z: any[] = [];
+  updateAudits(){
+    this.requestPayload.audits_bool = 1;
+    this.requestPayload.audits_id = this.z[0].audits_id;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("updateAudits/", this.requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Logged Out!',
+            'success'
+          )
+          this.getBarbers();
+          
+        });
+      }
+    })
   }
 
   selectPosBarbersFilter() {

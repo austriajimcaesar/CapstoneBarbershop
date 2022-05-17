@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+    <nav>
+      <div class="container-fluid">
+        <img src="././assets/Logo.png" class="navbar-brand navbarTitle" routerLink="/dashboard">  
+      </div>
+      <a class="brand" style="font-size: x-large;">E.M.E.S. Barbershop</a>
+      <input type="checkbox" id="click">
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      
+      <ul>
+        <li><a routerLink="/dashboard">Dashboard</a></li>
+        <li><a routerLink="/sales">Sales</a></li>
+        <li><a routerLink="/barbers">Barbers</a></li>
+        <li><a routerLink="/users">Users</a></li>
+        <li><a routerLink="/schedules">Schedules</a></li>
+        <li><a class="active" routerLink="/audits">Audits</a></li>
+        <!-- <li><a routerLink="/pos">Pos</a></li> -->
+    
+<br>
+        <li><a routerLink="/"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+      </ul>
+    </nav>
+
+<section>
+ <br>
+ <div class="home-content">
+    <div class="user-boxes">
+      <div class="recent-user box">
+        <div class="title">Users Information</div>
+
+      <div class="row"></div>  
+      <mat-form-field appearance="standard">
+        <mat-label><i class="material-icons">search</i> Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Barber" #input>
+      </mat-form-field>
+    
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- Position Column -->
+          <ng-container matColumnDef="Audit ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Audit ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_id}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Time In">
+            <th mat-header-cell *matHeaderCellDef > Time In </th>
+            <td mat-cell *matCellDef="let element">  {{element.users_username}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="Time Out">
+            <th mat-header-cell *matHeaderCellDef> Time Out </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_fname}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="User">
+            <th mat-header-cell *matHeaderCellDef > User </th>
+            <td mat-cell *matCellDef="let element"> {{element.users_lname}} </td>
+          </ng-container>
+    
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons 
+                       aria-label="Select page of periodic elements">
+        </mat-paginator> 
+                      
+      </div>
+    </div>
+  </div>
+  </section>
+
+    <!-- <div class="content">
+      <div>Responsive Navigation Menu Bar Design</div>
+      <div>using only HTML & CSS</div>
+    </div> -->
+

@@ -67,6 +67,10 @@ export class SalesComponent implements OnInit {
       M.AutoInit();
       M.Autocomplete.init(elem1, options1);
   }, 100);
+
+  this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
+    this.z = data.payload;
+  });
   
   }
 
@@ -105,6 +109,33 @@ export class SalesComponent implements OnInit {
     });
   }
 
+  z: any[] = [];
+  updateAudits(){
+    this.requestPayload.audits_bool = 1;
+    this.requestPayload.audits_id = this.z[0].audits_id;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("updateAudits/", this.requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Logged Out!',
+            'success'
+          )
+          this.getBarbers();
+          
+        });
+      }
+    })
+  }
   addSales(){
     const requestPayload: any = {};
     this.barbersidCut = window.sessionStorage.getItem('barberidAuto')

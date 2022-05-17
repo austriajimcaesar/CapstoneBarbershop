@@ -26,6 +26,7 @@ import { MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AuditsComponent } from './audits/audits.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { environment } from '../environments/environment';
     BarbersComponent,
     UsersComponent,
     SchedulesComponent,
-    PosComponent
+    PosComponent,
+    AuditsComponent
 
   ],
   imports: [
