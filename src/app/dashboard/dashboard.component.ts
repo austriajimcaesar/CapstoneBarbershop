@@ -3,6 +3,7 @@ import { NgModel } from '@angular/forms';
 import M from 'materialize-css'
 import { DataService } from '../data.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   dateid: any;
 
   requestPayload: any = {};
-  constructor(private ds:DataService) { }
+  constructor(private ds:DataService, private router:Router) { }
 
   ngOnInit() {
     this.selectPosBarbersLast()
@@ -75,7 +76,7 @@ export class DashboardComponent implements OnInit {
             'success'
           )
           this.getBarbers();
-          
+          this.router.navigate(['/']);
         });
       }
     })

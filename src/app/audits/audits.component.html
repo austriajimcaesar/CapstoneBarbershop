@@ -27,7 +27,7 @@
         <!-- <li><a routerLink="/pos">Pos</a></li> -->
     
 <br>
-        <li><a routerLink="/"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+      <li><a (click)="updateAudits()" ><i class="fas fa-sign-out-alt"></i>Logout</a></li>
       </ul>
     </nav>
 
@@ -48,22 +48,22 @@
           <!-- Position Column -->
           <ng-container matColumnDef="Audit ID">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Audit ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.users_id}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.audits_id}} </td>
           </ng-container>
     
           <ng-container matColumnDef="Time In">
             <th mat-header-cell *matHeaderCellDef > Time In </th>
-            <td mat-cell *matCellDef="let element">  {{element.users_username}} </td>
+            <td mat-cell *matCellDef="let element">  {{element.audits_timeIn}} </td>
           </ng-container>
           
           <ng-container matColumnDef="Time Out">
             <th mat-header-cell *matHeaderCellDef> Time Out </th>
-            <td mat-cell *matCellDef="let element"> {{element.users_fname}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.audits_timeOut}} </td>
           </ng-container>
-    
+          
           <ng-container matColumnDef="User">
             <th mat-header-cell *matHeaderCellDef > User </th>
-            <td mat-cell *matCellDef="let element"> {{element.users_lname}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.audits_user}} </td>
           </ng-container>
     
       

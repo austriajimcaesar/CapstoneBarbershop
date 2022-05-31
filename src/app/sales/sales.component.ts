@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sales',
@@ -36,7 +37,7 @@ export class SalesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private ds:DataService) { }
+  constructor(private ds:DataService, private router:Router) { }
    
 
   AfterViewInit(){
@@ -131,7 +132,7 @@ export class SalesComponent implements OnInit {
             'success'
           )
           this.getBarbers();
-          
+          this.router.navigate(['/']);
         });
       }
     })
@@ -190,6 +191,7 @@ export class SalesComponent implements OnInit {
           )
           this.c = data.payload;
           this.selectPosBarbers();
+
           
         });
       }

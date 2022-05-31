@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedules',
@@ -15,7 +16,7 @@ import Swal from 'sweetalert2';
 export class SchedulesComponent implements OnInit {
   public schedules: any[] = [];
 
-  constructor(private ds: DataService) { }
+  constructor(private ds: DataService, private router: Router) { }
   a: any[] = [];
   b: any[] = [];
   displayedColumns: string[] = ['Schedule ID', 'User Name', 'Barber Name', 'Date', 'Status'];
@@ -55,6 +56,34 @@ export class SchedulesComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       console.log(this.a)
+    })
+  }
+
+  requestPayload: any = {};
+  z: any[] = [];
+  updateAudits(){
+    this.requestPayload.audits_bool = 1;
+    this.requestPayload.audits_id = this.z[0].audits_id;
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3B8BEB',
+      cancelButtonColor: '#DD2C00',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("updateAudits/", this.requestPayload).subscribe((data: { payload: any[]; }) => {
+          Swal.fire(
+            'Success',
+            'Logged Out!',
+            'success'
+          )
+          this.router.navigate(['/']);
+        });
+      }
     })
   }
 
