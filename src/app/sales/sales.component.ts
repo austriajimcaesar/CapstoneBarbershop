@@ -131,7 +131,6 @@ export class SalesComponent implements OnInit {
             'Logged Out!',
             'success'
           )
-          this.getBarbers();
           this.router.navigate(['/']);
         });
       }

@@ -106,7 +106,7 @@ export class BarbersComponent implements OnInit {
             'Logged Out!',
             'success'
           )
-          this.getBarbers();
+  
           this.router.navigate(['/']);
         });
       }
