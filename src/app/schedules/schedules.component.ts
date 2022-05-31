@@ -35,6 +35,9 @@ export class SchedulesComponent implements OnInit {
     var elems = document.querySelectorAll('.timepicker');
     var instances = M.Timepicker.init(elems, options);
 
+    this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
+      this.z = data.payload;
+    });
     this.getSchedules();
   }
 

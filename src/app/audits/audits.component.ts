@@ -28,6 +28,9 @@ export class AuditsComponent implements OnInit {
 
   ngOnInit() {
     this.getAudits();
+    this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
+      this.z = data.payload;
+    });
   }
 
   applyFilter(event: Event) {

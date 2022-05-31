@@ -26,6 +26,9 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
+      this.z = data.payload;
+    });
   }
 
   applyFilter(event: Event) {
