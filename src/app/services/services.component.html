@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+    <nav>
+      <div class="container-fluid">
+        <img src="././assets/Logo.png" class="navbar-brand navbarTitle" routerLink="/dashboard">  
+      </div>
+      <a class="brand" style="font-size: x-large;">E.M.E.S. Barbershop</a>
+      <input type="checkbox" id="click">
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      
+      <ul>
+        <li><a routerLink="/dashboard">Dashboard</a></li>
+        <li><a routerLink="/sales">Sales</a></li>
+        <li><a routerLink="/barbers">Barbers</a></li>
+        <li><a routerLink="/users">Users</a></li>
+        <li><a routerLink="/schedules">Schedules</a></li>
+        <li><a routerLink="/audits">Audits</a></li>
+        <li><a class="active" routerLink="/services">Services</a></li>
+        <!-- <li><a routerLink="/pos">Pos</a></li> -->
+    
+<br>
+      <li><a (click)="updateAudits()" ><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+      </ul>
+    </nav>
+
+<section>
+ <br>
+ <div class="home-content">
+    <div class="user-boxes">
+      <div class="recent-user box">
+        <div class="title">Services</div>
+        <button (click)="clear()" class="btn waves-effect waves-dark green modal-trigger" data-target="modal1"><i class="fas fa-plus"></i></button>
+
+      <div class="row"></div>  
+      <mat-form-field appearance="standard">
+        <mat-label><i class="material-icons">search</i> Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Barber" #input>
+      </mat-form-field>
+    
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- Position Column -->
+          <ng-container matColumnDef="Service ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Services ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.services_id}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Service Name">
+            <th mat-header-cell *matHeaderCellDef > Service Name </th>
+            <td mat-cell *matCellDef="let element">  {{element.services_name}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="Service Price">
+            <th mat-header-cell *matHeaderCellDef> Service Price </th>
+            <td mat-cell *matCellDef="let element"> ₱{{element.services_price}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button (click)="fillModal(element.services_id, element.services_name, element.services_price)" class="btn waves-effect waves-dark blue modal-trigger" data-target="modal1"><i class="fas fa-edit"></i></button>
+              &nbsp;
+              <button (click)="deleteServices(element.services_id)" class="btn waves-effect waves-dark red"><i class="far fa-trash-alt"></i></button> </td>
+          </ng-container>
+          
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons 
+                       aria-label="Select page of periodic elements">
+        </mat-paginator> 
+              
+        
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Add Sale</h4>
+              <div class="card-content">
+               <div class="row">
+                   <form class="col s12">
+                     <div class="row">
+                       <div class="input-field col s6">
+                         <i class="material-icons prefix">perm_contact_calendar</i>
+                         <input disabled id="icon_fname" type="text" class="validate" name="posidNg" [(ngModel)]="serviceidNg">
+                         <label class="active" for="icon_id">ID</label>
+                       </div>
+                       <div class="input-field col s6">
+                        <i class="material-icons prefix">perm_contact_calendar</i>
+                        <input  id="icon_fname" type="text" class="validate" name="servicenameNg" [(ngModel)]="servicenameNg">
+                        <label class="active" for="icon_id">Service Name</label>
+                      </div>
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">perm_contact_calendar</i>
+                        <input id="icon_fname" type="text" class="validate" name="servicepriceNg" [(ngModel)]="servicepriceNg">
+                        <label class="active" for="icon_id">Service Price</label>
+                      </div>
+                   
+                     </div>
+        
+                   </form>
+                 </div>
+               <div class="form-field">
+                 <button *ngIf="updateTrue" (click)="updateServices()" class="btn waves-effect waves-dark green">Update</button>
+                 <button *ngIf="updateTrue==false"(click)="addServices()" class="btn waves-effect waves-dark blue">Add</button>
+                 &nbsp;
+                 <button  class="btn waves-effect waves-dark red submit modal-close">Cancel</button>
+               </div><br>
+              </div>
+            </div>
+          </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  </section>
+
+    <!-- <div class="content">
+      <div>Responsive Navigation Menu Bar Design</div>
+      <div>using only HTML & CSS</div>
+    </div> -->
+

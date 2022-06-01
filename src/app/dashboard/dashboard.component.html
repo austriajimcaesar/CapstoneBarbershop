@@ -10,18 +10,21 @@
      
       <div class="container-fluid">
         <img src="././assets/Logo.png" class="navbar-brand navbarTitle" routerLink="/dashboard">  
+        
       </div>
-      <a class="brand" style="font-size: x-large;">E.M.E.S. Barbershop</a>
       
+      <a class="brand" style="font-size: x-large;">E.M.E.S. Barbershop</a>
+
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
       </label>
+
+      
      
       
       
-      <ul>
-        
+      <ul >
         <li><a class="active" routerLink="/dashboard">Dashboard</a></li>
         <li><a routerLink="/sales">Sales</a></li>
         <ng-container *ngIf="adminID==1">
@@ -29,6 +32,7 @@
         <li><a routerLink="/users">Users</a></li>
         <li><a routerLink="/schedules">Schedules</a></li>
         <li><a routerLink="/audits">Audits</a></li>
+        <li><a routerLink="/services">Services</a></li>
         </ng-container>
         
         
@@ -38,7 +42,8 @@
       </ul>
     </nav>
     
-<section>
+<section id="hide">
+  
  <br>
     <div class="home-content">
       <div class="overview-boxes">
@@ -153,9 +158,55 @@
      
   <!-- ---------report----------------------       -->
       </div>
+      
     </div>
+
+    
   </section>
 
+ <div class="row"></div>
+<div a class="row">
+  <div class="col s12">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                  <th>Barber Name</th>
+                  <th>Service</th>
+                  <th>Price</th>
+                  <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of j">
+                <td>{{data.barbers_fname}} {{data.barbers_lname}}</td>
+                <td>{{data.services_name}}</td>
+                <td>₱{{data.pos_payment}}</td>
+                <td>{{data.pos_createdAt}}</td>
+              </tr>
+              <tr>
+                <td> </td>
+                <td> </td>
+                <td>Total: ₱{{moneymoney}} </td>
+                <td> </td>
+              </tr>
+            </tbody>
+          </table>
+        <div class="card-action">
+          <p>Authorized By: {{authorizedBy}}</p>
+          <br>
+
+          <a id="hide2" (click)="weekly()">Generate Weekly Report</a><br>
+          <a id="hide3" (click)="monthly()">Generate Monthly Report</a><br>
+          <a id="hide4" (click)="yearly()">Generate Yearly Report</a><br>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
     <!-- <div class="content">
       <div>Responsive Navigation Menu Bar Design</div>
       <div>using only HTML & CSS</div>

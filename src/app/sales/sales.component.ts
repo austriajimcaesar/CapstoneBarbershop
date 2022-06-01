@@ -22,7 +22,8 @@ export class SalesComponent implements OnInit {
   b: any[] = [];
   c: any[] = [];
   e: any[] = [];
-  displayedColumns: string[] = ['pos_id', 'Barber', 'Payment', 'Created', 'Updated', 'Actions'];
+  x: any[] = [];
+  displayedColumns: string[] = ['pos_id', 'Barber', 'Payment', 'Service', 'Created', 'Updated', 'Actions'];
   dataSource:any;
   posidNg: any;
   barberNg: any;
@@ -30,6 +31,7 @@ export class SalesComponent implements OnInit {
   createdNg: any;
   updatedNg: any;
   barbersidNg:any;
+  servicesNg:any;
   barbersidCut:any;
   updateTrue:boolean;
   cashierVar:any;
@@ -61,17 +63,19 @@ export class SalesComponent implements OnInit {
     var options = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
     this.cashierVar = window.sessionStorage.getItem('admin_id');
-    console.log(this.cashierVar+"hotdog")
     this.selectPosBarbers();
     this.getBarbers();
     setTimeout(() => {
       M.AutoInit();
       M.Autocomplete.init(elem1, options1);
-  }, 100);
+     
+  }, 1000);
+  this.getServices();
 
   this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
     this.z = data.payload;
   });
+  this.getServices();
   
   }
 
@@ -84,15 +88,22 @@ export class SalesComponent implements OnInit {
     }
   }
 
+  getServices(){
+    this.ds.sendApiRequest("getServices/", null).subscribe((data: { payload: any[]; }) => {
+      this.x = data.payload;
+    
+    });
+  }
+
 
   selectPosBarbers() {
-    this.ds.sendApiRequest("selectPosBarbers/", null).subscribe((data: { payload: any[]; }) => {
+    this.ds.sendApiRequest("selectPosBarbersServices/", null).subscribe((data: { payload: any[]; }) => {
       this.a = data.payload;
       this.dataSource = new MatTableDataSource(this.a);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // for (var i = 0; i < this.a.length; i++) {
-      //   console.log(this.a[i].barbers_id+". "+this.a[i].barbers_fname+" "+this.a[i].barbers_lname);
+      //   console.log(this.a[i].barbers_id+". "+this .a[i].barbers_fname+" "+this.a[i].barbers_lname);
       //   this.b[this.a[i].barbers_id+". "+this.a[i].barbers_fname+" "+this.a[i].barbers_lname] = this.a[i].flag; //countryArray[i].flag or null
       // }
       // console.log(this.a)
@@ -140,9 +151,9 @@ export class SalesComponent implements OnInit {
     const requestPayload: any = {};
     this.barbersidCut = window.sessionStorage.getItem('barberidAuto')
     this.barbersidCut = this.barbersidCut.split('.')[0];
-    console.log(this.barbersidCut);
     requestPayload.pos_payment =  this.paymentNg;
     requestPayload.pos_barbers_id = this.barbersidCut;
+    requestPayload.pos_services_id = this.servicesNg;
     Swal.fire({
       title: 'Confirmation',
       text: 'Are you sure you want to add a sale?',
@@ -202,6 +213,7 @@ export class SalesComponent implements OnInit {
     this.barbersidCut = window.sessionStorage.getItem('barberidAuto')
     this.barbersidCut = this.barbersidCut.split('.')[0];
     this.salesUpdate.pos_barbers_id = this.barbersidCut
+    this.salesUpdate.pos_services_id = this.servicesNg
     if(this.salesUpdate.pos_barbers_id==""){
       this.barberNg.split('.')[0];
       this.salesUpdate.pos_barbers_id=this.barberNg;

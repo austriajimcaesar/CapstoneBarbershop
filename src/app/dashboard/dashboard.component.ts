@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   c: any[] = [];
   d: any[] = [];
   e: any[] = [];
+  j: any[] = [];
   totalSales: any;
   totalMoney: any = 0;
   totalMoneyFiltered: any = 0;
@@ -39,13 +40,124 @@ export class DashboardComponent implements OnInit {
     console.log(this.adminID)
     setTimeout(() => {
       M.AutoInit();
-  }, 100);
+  }, 1000);
 
   this.ds.sendApiRequest("getLatestData/", null).subscribe((data: { payload: any[]; }) => {
     this.z = data.payload;
   });
+  
   }
 
+  weekly(){
+    this.selectPosBarbersWeekly();
+    setTimeout(() => {
+      var x = document.getElementById("hide");
+      var y = document.getElementById("hide2");
+      var z = document.getElementById("hide3");
+      var w = document.getElementById("hide4");
+
+      x.style.display = "none";
+      y.style.display = "none";
+      z.style.display = "none";
+      w.style.display = "none";
+      //x.style.display = "block";
+     
+
+    
+        window.print();
+        x.style.display = "block";
+        y.style.display = "block";
+        z.style.display = "block";
+        w.style.display = "block";
+
+  }, 1500);
+
+     
+  }
+
+  monthly(){
+    this.selectPosBarbersMonthly();
+    setTimeout(() => {
+      var x = document.getElementById("hide");
+      var y = document.getElementById("hide2");
+      var z = document.getElementById("hide3");
+      var w = document.getElementById("hide4");
+
+      x.style.display = "none";
+      y.style.display = "none";
+      z.style.display = "none";
+      w.style.display = "none";
+      //x.style.display = "block";
+     
+
+    
+        window.print();
+        x.style.display = "block";
+        y.style.display = "block";
+        z.style.display = "block";
+        w.style.display = "block";
+
+  }, 1500);
+
+     
+  }
+
+  yearly(){
+    this.selectPosBarbersYearly();
+    setTimeout(() => {
+      var x = document.getElementById("hide");
+      var y = document.getElementById("hide2");
+      var z = document.getElementById("hide3");
+      var w = document.getElementById("hide4");
+
+      x.style.display = "none";
+      y.style.display = "none";
+      z.style.display = "none";
+      w.style.display = "none";
+      //x.style.display = "block";
+     
+
+    
+        window.print();
+        x.style.display = "block";
+        y.style.display = "block";
+        z.style.display = "block";
+        w.style.display = "block";
+
+  }, 1500);
+
+     
+  }
+  moneymoney:any = 0;
+  authorizedBy = window.sessionStorage.getItem('admin_username');
+  selectPosBarbersWeekly() {
+    this.ds.sendApiRequest("selectPosBarbersServices2/"+"weekly", null).subscribe((data: { payload: any[]; }) => {
+      this.j = data.payload;
+      for(var i =0; i < this.j.length; i++){
+        
+        this.moneymoney += this.j[i].pos_payment;
+        }
+      
+    });
+  }
+  selectPosBarbersMonthly() {
+    this.ds.sendApiRequest("selectPosBarbersServices2/"+"monthly", null).subscribe((data: { payload: any[]; }) => {
+      this.j = data.payload;
+   
+    });
+  }
+
+  selectPosBarbersYearly() {
+    this.ds.sendApiRequest("selectPosBarbersServices2/"+"yearly", null).subscribe((data: { payload: any[]; }) => {
+      this.j = data.payload;
+   
+    });
+  }
+
+
+
+
+  
   testing(){
     if(this.barbersid && this.dateid != null){
     console.log(this.barbersid + this.dateid)

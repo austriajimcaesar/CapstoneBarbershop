@@ -27,6 +27,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AuditsComponent } from './audits/audits.component';
+import { ServicesComponent } from './services/services.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AuditsComponent } from './audits/audits.component';
     UsersComponent,
     SchedulesComponent,
     PosComponent,
-    AuditsComponent
+    AuditsComponent,
+    ServicesComponent
 
   ],
   imports: [

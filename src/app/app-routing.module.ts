@@ -8,6 +8,7 @@ import { UsersComponent } from './users/users.component';
 import { BarbersComponent } from './barbers/barbers.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { AuditsComponent } from './audits/audits.component';
+import { ServicesComponent } from './services/services.component';
 import { PosComponent } from './pos/pos.component';
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'audits',
     component: AuditsComponent
+  },
+  {
+    path: 'services',
+    component: ServicesComponent
   }
 ];
 
