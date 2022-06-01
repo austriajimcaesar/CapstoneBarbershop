@@ -4,6 +4,7 @@ import M from 'materialize-css'
 import { DataService } from '../data.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,11 +28,20 @@ export class DashboardComponent implements OnInit {
   barberNg: any;
   barbersid: any;
   dateid: any;
+  monthNg:any;
+  monthyearNg:any;
+  yearNg:any;
+  fromNg:any;
+  toNg:any;
 
   requestPayload: any = {};
   constructor(private ds:DataService, private router:Router) { }
 
   ngOnInit() {
+    const elem = document.querySelector('.datepicker');
+    const options = {format: 'YYYY-MM-DD',
+      showClearBtn:true};
+    
     this.selectPosBarbersLast()
     this.selectPosBarbers()
     this.getBarbers();
@@ -47,7 +57,7 @@ export class DashboardComponent implements OnInit {
   });
   
   }
-
+ 
   weekly(){
     this.selectPosBarbersWeekly();
     setTimeout(() => {
@@ -77,27 +87,27 @@ export class DashboardComponent implements OnInit {
 
   monthly(){
     this.selectPosBarbersMonthly();
-    setTimeout(() => {
-      var x = document.getElementById("hide");
-      var y = document.getElementById("hide2");
-      var z = document.getElementById("hide3");
-      var w = document.getElementById("hide4");
+     setTimeout(() => {
+       var x = document.getElementById("hide");
+       var y = document.getElementById("hide2");
+       var z = document.getElementById("hide3");
+       var w = document.getElementById("hide4");
 
-      x.style.display = "none";
-      y.style.display = "none";
-      z.style.display = "none";
-      w.style.display = "none";
-      //x.style.display = "block";
+       x.style.display = "none";
+       y.style.display = "none";
+       z.style.display = "none";
+       w.style.display = "none";
+
      
 
     
-        window.print();
-        x.style.display = "block";
-        y.style.display = "block";
-        z.style.display = "block";
-        w.style.display = "block";
+         window.print();
+         x.style.display = "block";
+         y.style.display = "block";
+         z.style.display = "block";
+         w.style.display = "block";
 
-  }, 1500);
+   }, 1500);
 
      
   }
@@ -130,8 +140,13 @@ export class DashboardComponent implements OnInit {
   }
   moneymoney:any = 0;
   authorizedBy = window.sessionStorage.getItem('admin_username');
+
   selectPosBarbersWeekly() {
-    this.ds.sendApiRequest("selectPosBarbersServices2/"+"weekly", null).subscribe((data: { payload: any[]; }) => {
+    var getDateVar1 = (<HTMLInputElement>document.getElementById("datePick1")).value;
+    var getDateVar2 = (<HTMLInputElement>document.getElementById("datePick2")).value;
+    this.fromNg = moment(getDateVar1).format('YYYY-MM-DD'); // 2019-04-22
+    this.toNg = moment(getDateVar2).format('YYYY-MM-DD'); // 2019-04-22
+    this.ds.sendApiRequest("selectPosBarbersServices2/"+"weekly/"+this.fromNg+"/"+this.toNg, null).subscribe((data: { payload: any[]; }) => {
       this.j = data.payload;
       for(var i =0; i < this.j.length; i++){
         
@@ -141,14 +156,14 @@ export class DashboardComponent implements OnInit {
     });
   }
   selectPosBarbersMonthly() {
-    this.ds.sendApiRequest("selectPosBarbersServices2/"+"monthly", null).subscribe((data: { payload: any[]; }) => {
+    this.ds.sendApiRequest("selectPosBarbersServices2/"+"monthly/"+this.monthNg+"/"+this.monthyearNg, null).subscribe((data: { payload: any[]; }) => {
       this.j = data.payload;
    
     });
   }
 
   selectPosBarbersYearly() {
-    this.ds.sendApiRequest("selectPosBarbersServices2/"+"yearly", null).subscribe((data: { payload: any[]; }) => {
+    this.ds.sendApiRequest("selectPosBarbersServices2/"+"yearly/"+this.yearNg+"/"+0, null).subscribe((data: { payload: any[]; }) => {
       this.j = data.payload;
    
     });
