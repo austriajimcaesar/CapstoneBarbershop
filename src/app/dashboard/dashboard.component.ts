@@ -142,6 +142,7 @@ export class DashboardComponent implements OnInit {
   authorizedBy = window.sessionStorage.getItem('admin_username');
 
   selectPosBarbersWeekly() {
+    this.moneymoney=0;
     var getDateVar1 = (<HTMLInputElement>document.getElementById("datePick1")).value;
     var getDateVar2 = (<HTMLInputElement>document.getElementById("datePick2")).value;
     this.fromNg = moment(getDateVar1).format('YYYY-MM-DD'); // 2019-04-22
@@ -151,21 +152,33 @@ export class DashboardComponent implements OnInit {
       for(var i =0; i < this.j.length; i++){
         
         this.moneymoney += this.j[i].pos_payment;
+        console.log(this.moneymoney)
         }
       
     });
   }
   selectPosBarbersMonthly() {
+
+    this.moneymoney=0;
     this.ds.sendApiRequest("selectPosBarbersServices2/"+"monthly/"+this.monthNg+"/"+this.monthyearNg, null).subscribe((data: { payload: any[]; }) => {
       this.j = data.payload;
-   
+      for(var i =0; i < this.j.length; i++){
+        
+        this.moneymoney += this.j[i].pos_payment;
+        console.log(this.moneymoney)
+        }
     });
   }
 
   selectPosBarbersYearly() {
+    this.moneymoney=0;
     this.ds.sendApiRequest("selectPosBarbersServices2/"+"yearly/"+this.yearNg+"/"+0, null).subscribe((data: { payload: any[]; }) => {
       this.j = data.payload;
-   
+      for(var i =0; i < this.j.length; i++){
+        
+        this.moneymoney += this.j[i].pos_payment;
+        console.log(this.moneymoney)
+        }
     });
   }
 
